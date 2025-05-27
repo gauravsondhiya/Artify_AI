@@ -1,8 +1,8 @@
 import React from "react";
-import { assets, stepsData } from "../assets/assets";
+import { assets, stepsData,testimonialsData } from "../assets/assets";
 const Home = () => {
   return (
-    <div className="w-[90%] m-auto border border-black text-center">
+    <div className="w-[90%] m-auto  border-black text-center">
       <div>
         <p className="text-7xl ">
           Turn text to <br />
@@ -61,8 +61,32 @@ const Home = () => {
                  </p>
               </div>
            </div>
+
+            {/* customer reviews */}
+
+             <p className="text-2xl font-bold mt-10">Customer testimonials</p>
+             <p>What Our Users Are Saying</p>
+           <div className="grid sm:grid-cols-3 gap-3 mt-3 ">
+           {
+          testimonialsData.map((e)=>(
+            <div className=" rounded-2xl shadow-xl">
+               <div className="h-[30%]  border-red-500">
+               <img className="h-[100%] m-auto" src={e.image} alt="" />
+               </div>
+               <p className="font-semibold">{e.name}</p>
+               <p>{e.role}</p>
+               <p>{Array.from({ length: e.stars }).map(() =>(
+                "⭐"
+               ))}</p>
+               <p>{e.text}</p>
+            </div>
+
+          ))
+          }
+           </div>
+
     </div>
   );
-};
+}
 
 export default Home;
