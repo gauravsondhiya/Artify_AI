@@ -6,7 +6,7 @@ const Search = () => {
 
   return (
     <div>
-      <Carsoles />
+      {/* <Carsoles /> */}
      <ImageGenerator/>
     </div>
   );
