@@ -7,8 +7,9 @@ const Home = () => {
     <div className="w-[90%] m-auto  border-black text-center">
       <div>
         <p className="text-7xl ">
-          Turn text to <br />
-          <span className="text-blue-400">Image</span>, in seconds.
+          , images.
+          one prompt to create<br />
+          <span className="text-blue-400">Image</span>, One click to remove backgrounds
         </p>
         <p className="mt-4">
           Unleash your creativity with AI. Turn your imagination into visual art
