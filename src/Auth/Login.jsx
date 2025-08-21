@@ -1,10 +1,11 @@
 import React from 'react'
-
+import { assets } from "../assets/assets"
 const Login = () => {
   return (
     <div>
       <div className="border border-black w-[384px] h-[433px] m-auto text-center rounded-2xl mt-5 ">
-            <p className="text-3xl font-semibold mt-[25%]">Login</p>
+            <img src={assets.logo_icon} alt="" className="m-auto mt-5 h-15"/>
+            <p className="text-3xl font-semibold mt-6">Login</p>
             <p>Welcome back! Please sign in to continue</p>
             <form
               

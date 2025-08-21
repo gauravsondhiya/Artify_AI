@@ -31,7 +31,7 @@ const Navbar = () => {
           <NavLink to="/Login" className=" p-1 text-center  bg-black text-white w-[100px] rounded-2xl">
             Login
           </NavLink>
-          <NavLink to="/Login" className=" p-1 text-center  bg-black text-white w-[100px] rounded-2xl">
+          <NavLink to="/Signup" className=" p-1 text-center  bg-black text-white w-[100px] rounded-2xl">
             Signup
           </NavLink>
         </div>

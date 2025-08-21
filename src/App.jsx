@@ -12,16 +12,16 @@ const App = () => {
     <div>
      
      <Navbar/>
-    {/* <Routes> 
+     <Routes> 
       <Route path="/" element={<Home />} /> 
       <Route path="/Search" element={<Search />} /> 
       <Route path="/Price" element={<Price />} /> 
       <Route path="/Login" element={<Login />} /> 
-      <Route path="/Login" element={<Signup />} /> 
+      <Route path="/Signup" element={<Signup />} /> 
     </Routes>
      
      <Footer/>
-     */}
+    
      
     </div>
   )
