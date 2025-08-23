@@ -12,7 +12,7 @@ const Price = () => {
         </p>
         <p className="text-3xl font-bold mt-2">Choose the Plan</p>
       </div>
-      <div className="grid sm:grid-cols-3 mt-6 border-black w-[90%] m-auto">
+      <div className="grid sm:grid-cols-3 mt-6 border-black w-[80%] m-auto">
         {plans.map((e) => (
           <div className="shadow-lg shadow-indigo-500/50 rounded-2xl  w-[335px] m-auto h-[400px] p-7  [&>button,p,img]:mt-5">
             <img src={logo} alt="" />

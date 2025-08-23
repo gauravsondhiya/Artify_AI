@@ -15,7 +15,7 @@ const Carsoles = () => {
       assets.sample_img_2,
     ];
   return (
-      <div className="overflow-hidden py-8">
+      <div className="overflow-hidden py-8 mt-6">
         <style>
           {`
             @keyframes scroll {
