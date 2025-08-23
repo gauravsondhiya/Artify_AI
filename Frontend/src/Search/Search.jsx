@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 // import Carsoles from "../Carosoles/Carsoles";
 import ImageGenerator from "./ImageGenerator";
-
+import { stepsData } from "../assets/assets.js";
 const Search = () => {
   return (
     <div>
       {/* <Carsoles /> */}
       <ImageGenerator />
-      <p className="text-3xl font-bold mt-9">How it works</p>
-      <p>Transform Words Into Stunning Images</p>
+
+      <div className=" text-center">
+        <p className="text-3xl font-bold mt-9">How it works</p>
+        <p>Transform Words Into Stunning Images</p>
+      </div>
+
       <div>
         {stepsData.map((e, i) => (
           <div
             key={i}
-            className=" rounded-2xl border-black w-[705px] h-[114px] m-auto flex text-left mt-3 shadow-md"
+            className=" rounded-2xl border border-gray-300 sm:w-[705px] h-[114px] sm:m-auto 
+            flex text-left mt-3 shadow-md"
           >
             <div className="w-[10%]  m-auto">
               <img className="w-[45px] m-auto" src={e.icon} alt="" />

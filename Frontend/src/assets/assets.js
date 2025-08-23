@@ -28,6 +28,8 @@ import demo6 from './6.jpg'
 import demo7 from './7.jpg'
 import demo8 from './8.jpg'
 import demo9 from './9.webp'
+import remove_bg from "../assets/remove_bg_icon.svg"
+
 export const assets = {
     logo,
     logo_icon,
@@ -117,3 +119,20 @@ export const plans = [
       desc: 'Best for enterprise use.'
     },
   ]
+
+export const bgrm = [
+    {
+      title: 'Upload image',
+      icon: step_icon_1,
+    },
+    {
+      title: 'Remove background',
+      
+      icon: remove_bg,
+    },
+    {
+      title: 'Download image',
+
+      icon: step_icon_3,
+    },
+  ];

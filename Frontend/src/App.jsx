@@ -6,16 +6,18 @@ import Navbar from "./Navbar/Navbar";
 import Signup from "./Auth/Signup";
 import { Routes, Route } from "react-router";
 import Login from "./Auth/Login";
+import Bg from "./Bgremove/Bg";
 const App = () => {
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Search" element={<Search />} />
-        <Route path="/Price" element={<Price />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/bgremove" element={<Bg/>} />
+        <Route path="/price" element={<Price />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
 
       <Footer />

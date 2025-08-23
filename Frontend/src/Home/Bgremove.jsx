@@ -1,5 +1,6 @@
 import React from 'react'
 import bgremove from "../assets/bgremove.png"
+import {NavLink} from "react-router"
 const Bgremove = () => {
   return (
     <>
@@ -8,9 +9,11 @@ const Bgremove = () => {
             <p>Remove the</p>
             <p className=' bg-gradient-to-t from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text'>Background from </p>
             <p> images for free.</p>
+            <NavLink to="/bgremove">
            <button className="  mt-7 h-[65px] w-[239px] bg-gradient-to-t from-pink-500 via-purple-500 to-blue-500 text-transparent  m-auto rounded-3xl text-2xl text-white">
             Generate Images
           </button>
+          </NavLink>
         </div>
         <div className=' border-amber-300 sm:col-span-6'>
             <img src={bgremove} alt="" />

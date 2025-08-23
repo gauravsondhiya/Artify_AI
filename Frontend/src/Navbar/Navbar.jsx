@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="flex gap-5 font-semibold ">
           <NavLink
             to="/Price"
-            className="bg-blue-200 p-1 text-center rounded-2xl font-semibold w-[100px]"
+            className="bg-blue-400 p-1 text-center rounded-3xl font-semibold w-[100px]"
           >
             Pricing
           </NavLink>
@@ -40,20 +40,22 @@ const Navbar = () => {
         {/* button */}
 
         <div className="sm:hidden text-2xl border border-blue-300 flex justify-around p-4 mt-3 w-[90%] m-auto rounded-2xl">
-          <div className="flex gap-2 text-2xl font-bold border border-white">
+         
+          <NavLink to="/" className="flex gap-2 text-2xl font-bold border border-white">
             <img src={assets.logo_icon} alt="" />
             <p>Artify AI</p>
-          </div>
+          </NavLink>
           <button onClick={hider} className="text-3xl">
             {hiden ? <GiCrossedSwords /> : <IoReorderThreeOutline />}
           </button>
         </div>
 
         {hiden && (
-          <div className="backdrop-blur-xl text-2xl font-bold text-center [&>div]:mt-3 [&>div]:hover:underline  ">
-            <div>Pricing</div>
-            <div>Login </div>
-            <div>Signup</div>
+          <div className="backdrop-blur-xl text-2xl font-bold text-center  grid ">
+            <NavLink to='/price' className="mt-3 hover:underline">Pricing</NavLink>
+            <NavLink to='/Login' className="mt-3 hover:underline">Login</NavLink>
+            <NavLink to='/Signup' className="mt-3 hover:underline">Signup</NavLink>
+            
           </div>
         )}
       </div>

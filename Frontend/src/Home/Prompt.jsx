@@ -1,5 +1,7 @@
 import react from "react";
 import { assets, stepsData, testimonialsData } from "../assets/assets";
+import {NavLink} from "react-router"
+
 const Prompt = () => {
   return (
     <div>
@@ -17,19 +19,24 @@ const Prompt = () => {
       {/* <p className="text-3xl mt-7 font-bold">Create AI Images</p>
             <p className="text-xl">Turn your imagination into visuals</p> */}
 
-      <div className=" border-red-600 grid sm:grid-cols-12 mt-11">
-        <div className=" border-amber-300 sm:col-span-6">
+      <div className=" border-red-600 grid sm:grid-cols-12 mt-11 ">
+        <div className=" border-amber-300 sm:col-span-7 sm:m-auto">
           <img src={assets.sample_img_1} alt="" />
         </div>
-        <div className=" border-amber-300 sm:col-span-6 m-auto text-4xl  sm:[&>p]:text-5xl font-semibold">
+        
+        <div className=" border-amber-300 sm:col-span-5 mt-5  
+        sm:m-auto text-4xl  sm:[&>p]:text-5xl font-semibold">
           <p>Introducing the</p>
           <p className=" bg-gradient-to-b from-blue-500 via-blue-400 to-blue-900 text-transparent bg-clip-text">
             AI-Powered{" "}
           </p>
           <p> Text to Image Generator</p>
-          <button className="  mt-7 h-[65px] w-[239px] bg-gradient-to-b from-blue-500 via-blue-400 to-blue-900 text-transparent  rounded-3xl text-2xl text-white">
+          <NavLink to="/search">
+
+          <button  className="  mt-7 h-[65px] w-[239px] bg-gradient-to-b from-blue-500 via-blue-400 to-blue-900 text-transparent  rounded-3xl text-2xl text-white">
             Generate Images
           </button>
+          </NavLink>
         </div>
       </div>
     </div>

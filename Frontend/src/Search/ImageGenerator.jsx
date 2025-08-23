@@ -16,7 +16,7 @@ const ImageGenerator = () => {
     setImageUrl(null);
 
     try {
-    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY});
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
       const contents = input;
 
@@ -73,7 +73,7 @@ const ImageGenerator = () => {
     <>
       <div className="mt-12  w-[90%] m-auto text-center">
         <h1 className="text-4xl font-semibold ">Type your Imagination</h1>
-<p>{inputreq}</p>
+        <p>{inputreq}</p>
         <div className="m-auto  ">
           <div>
             <textarea
@@ -112,7 +112,7 @@ const ImageGenerator = () => {
               <button
                 onClick={downloader}
                 className="mt-3 text-xl font-semibold text-white
-               h-[50px] w-[15%] cursor-pointer rounded-xl bg-blue-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-red-500 "
+               h-[50px] sm:w-[15%] cursor-pointer rounded-xl bg-blue-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-red-500 "
               >
                 Download
               </button>
