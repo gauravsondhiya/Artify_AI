@@ -1,6 +1,9 @@
 import express, { json } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import "dotenv/config"
+import { GoogleGenAI, Modality } from "@google/genai";
+import * as fs from "node:fs";
 
 const app = express();
 app.use(cors());
@@ -37,3 +40,31 @@ app.post("/signup", (req, res) => {
     });
   res.json("datasave");
 });
+
+
+async function main() {
+
+  const ai = new GoogleGenAI({
+    GEMINI_API_KEY:process.env.GEMINI_API_KEY
+  });
+
+  const contents =
+    "Hi, can you create a 3d rendered image of a pig " +
+    "with wings and a top hat flying over a happy " +
+    "futuristic scifi city with lots of greenery?";
+
+  // Set responseModalities to include "Image" so the model can generate  an image
+  const response = await ai.models.generateContent({
+    model: "gemini-2.0-flash-preview-image-generation",
+    contents: contents,
+    config: {
+      responseModalities: [Modality.TEXT, Modality.IMAGE],
+    },
+  });
+   console.log(response)
+}
+
+app.post("/generateimage",(req,res)=>{
+ main()
+ res.send("done")
+})
