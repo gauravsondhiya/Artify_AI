@@ -1,41 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../assets/assets";
-import { useState } from "react";
+
 const Login = () => {
   let [inputval, setinputval] = useState({
-    email:"",password:""
+    email: "",
+    password: "",
   });
 
-
-  let handler =(e)=>{
-   let{name,value}=e.target
-   
-    setinputval((pre)=>({
-       ...pre,
-       [name]:value
-    }))
-  }
-
-
-  let uploaddata = async () => {
-   try {
-     let method = {
-       method: "POST",
-       headers: { "Content-type": "application/json" },
-       body: JSON.stringify({ email:inputval.email ,password:inputval.password }),
-     };
-     let getdata = await fetch("http://localhost:3000/login", method);
-     let data = await getdata.json()
-     console.log(data)
-
-   } catch (error) {
-    console.log(error)
-   }
+  let handler = (e) => {
+    let { name, value } = e.target;
+    setinputval((pre) => ({
+      ...pre,
+      [name]: value,
+    }));
   };
-  
+
+  let uploaddata = () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let exist = users.find(
+      (u) => u.email === inputval.email && u.password === inputval.password
+    );
+
+    if (exist) {
+      localStorage.setItem("loggedInUser", JSON.stringify(exist));
+      alert("Login successful ✅");
+      window.location.href = "/";
+    } else {
+      alert("Invalid email or password ❌");
+    }
+  };
+
   let submited = (event) => {
-    event.preventDefault()
-     uploaddata()
+    event.preventDefault();
+    uploaddata();
   };
 
   return (
@@ -45,7 +43,7 @@ const Login = () => {
         <p className="text-3xl font-semibold mt-6">Login</p>
         <p>Welcome back! Please sign in to continue</p>
         <form
-          className=" text-center mt-5 flex flex-col [&>input]:w-[295px] [&>input]:h-[42px] [&>input]:rounded-2xl [&>input]:mt-2 [&>input]:m-auto text-xl [&>input]:text-center [&>input]: "
+          className=" text-center mt-5 flex flex-col [&>input]:w-[295px] [&>input]:h-[42px] [&>input]:rounded-2xl [&>input]:mt-2 [&>input]:m-auto text-xl [&>input]:text-center"
           onSubmit={submited}
         >
           <input
@@ -54,7 +52,7 @@ const Login = () => {
             required
             name="email"
             className="border border-blue-200 "
-             value={inputval.email}
+            value={inputval.email}
             onChange={handler}
           />
           <input
@@ -66,10 +64,9 @@ const Login = () => {
             value={inputval.password}
             onChange={handler}
           />
-          <input type="submit" className="bg-blue-600 text-white" />
+          <input type="submit" className="bg-blue-600 text-white cursor-pointer" />
         </form>
       </div>
-      
     </div>
   );
 };

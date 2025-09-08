@@ -1,12 +1,14 @@
-import Home from "./Home/Home";
+import { Routes, Route } from "react-router";
+import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
+import Home from "./Home/Home";
 import Search from "./Search/Search";
 import Price from "./Price/Price";
-import Navbar from "./Navbar/Navbar";
 import Signup from "./Auth/Signup";
-import { Routes, Route } from "react-router";
 import Login from "./Auth/Login";
 import Bg from "./Bgremove/Bg";
+import ProtectedRoute from "./Auth/ProtectedRoute";
+
 const App = () => {
   return (
     <>
@@ -14,12 +16,18 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/bgremove" element={<Bg/>} />
+        <Route
+          path="/bgremove"
+          element={
+            <ProtectedRoute>
+              <Bg />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/price" element={<Price />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
-
       <Footer />
     </>
   );

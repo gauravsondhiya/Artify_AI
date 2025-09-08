@@ -6,7 +6,7 @@ const Search = () => {
   return (
     <div>
       {/* <Carsoles /> */}
-      <ImageGenerator />
+      
 
       <div className=" text-center">
         <p className="text-3xl font-bold mt-9">How it works</p>
@@ -30,6 +30,7 @@ const Search = () => {
           </div>
         ))}
       </div>
+      <ImageGenerator />
     </div>
   );
 };
