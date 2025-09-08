@@ -28,7 +28,7 @@ import demo6 from './6.jpg'
 import demo7 from './7.jpg'
 import demo8 from './8.jpg'
 import demo9 from './9.webp'
-import remove_bg from "../assets/remove_bg_icon.svg"
+import remove_bg from "./remove_bg_icon.svg"
 
 export const assets = {
     logo,
