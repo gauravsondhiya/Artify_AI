@@ -16,19 +16,7 @@ const Login = () => {
   };
 
   let uploaddata = () => {
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    let exist = users.find(
-      (u) => u.email === inputval.email && u.password === inputval.password
-    );
-
-    if (exist) {
-      localStorage.setItem("loggedInUser", JSON.stringify(exist));
-      alert("Login successful ✅");
-      window.location.href = "/";
-    } else {
-      alert("Invalid email or password ❌");
-    }
+   
   };
 
   let submited = (event) => {

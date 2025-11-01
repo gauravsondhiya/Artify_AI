@@ -9,29 +9,12 @@ const Navbar = () => {
   const [user, setUser] = useState(null); // ✅ user state
   const [coins, setCoins] = useState(50); // example coins
 
-  // ✅ check if user is already logged in (localStorage)
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
-
   const hider = () => sethiden(!hiden);
 
-  const handleLogin = () => {
-    // fake login data (replace with your real auth)
-    const loggedUser = {
-      name: "John Doe",
-      avatar: "https://i.pravatar.cc/40",
-    };
-    setUser(loggedUser);
-    localStorage.setItem("user", JSON.stringify(loggedUser));
-  };
+  const handleLogin = () => {};
 
   const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+    console.log("logout");
   };
 
   return (
@@ -54,42 +37,19 @@ const Navbar = () => {
             Pricing
           </NavLink>
 
-          {/* Show Login/Signup if NOT logged in */}
-          {!user && (
-            <>
-              <NavLink
-                to="/Login"
-                onClick={handleLogin} // demo login
-                className="p-1 text-center bg-black text-white w-[100px] rounded-2xl"
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to="/Signup"
-                className="p-1 text-center bg-black text-white w-[100px] rounded-2xl"
-              >
-                Signup
-              </NavLink>
-            </>
-          )}
-
-          {/* ✅ Show Avatar + Coins if logged in */}
-          {user && (
-            <div className="flex items-center gap-4">
-              <span className="font-semibold text-yellow-600">{coins} 🪙</span>
-              <img
-                src={user.avatar}
-                alt="avatar"
-                className="w-10 h-10 rounded-full border"
-              />
-              <button
-                onClick={handleLogout}
-                className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+          <NavLink
+            to="/Login"
+            onClick={handleLogin} // demo login
+            className="p-1 text-center bg-black text-white w-[100px] rounded-2xl"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/Signup"
+            className="p-1 text-center bg-black text-white w-[100px] rounded-2xl"
+          >
+            Signup
+          </NavLink>
         </div>
       </div>
 
@@ -113,9 +73,7 @@ const Navbar = () => {
             Pricing
           </NavLink>
 
-          {/* Show login/signup OR avatar + coins */}
-          {!user ? (
-            <>
+         
               <NavLink
                 to="/Login"
                 onClick={handleLogin}
@@ -126,23 +84,7 @@ const Navbar = () => {
               <NavLink to="/Signup" className="mt-3 hover:underline">
                 Signup
               </NavLink>
-            </>
-          ) : (
-            <div className="flex flex-col items-center mt-3 gap-2">
-              <span className="text-yellow-600">{coins} 🪙</span>
-              <img
-                src={user.avatar}
-                alt="avatar"
-                className="w-14 h-14 rounded-full border"
-              />
-              <button
-                onClick={handleLogout}
-                className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+           
         </div>
       )}
     </div>

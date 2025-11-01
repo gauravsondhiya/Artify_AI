@@ -17,34 +17,11 @@ const Signup = () => {
   };
 
   let uploaddata = () => {
-    // get old users from localStorage
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // check if user already exists
-    let exist = users.find((u) => u.email === input.email);
-    if (exist) {
-      alert("User already exists, please login");
-      return;
-    }
-
-    // new user with 10 free coins
-    let newUser = {
-      email: input.email,
-      name: input.name,
-      password: input.password,
-      coins: 10,
-    };
-
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Signup successful ✅. Please login now.");
-    window.location.href = "/login";
+  
   };
 
   let submit = (e) => {
-    e.preventDefault();
-    uploaddata();
+    
   };
 
   return (
