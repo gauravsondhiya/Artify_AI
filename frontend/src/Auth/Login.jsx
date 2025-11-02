@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import { assets } from "../assets/assets";
 import axios from 'axios'
 import { data } from "react-router";
 import { useNavigate } from "react-router";
+import UserContext from "../Context/UserContext.js";
 const Login = () => {
    const navigate = useNavigate();
+     const { user, setUser } = useContext(UserContext);
   let [inputval, setinputval] = useState({
     email: "",
     password: "",
@@ -21,12 +23,14 @@ const Login = () => {
   let uploaddata = async() => {
     try {
       let dataupload = await axios.post(import.meta.env.VITE_LOGIN_API,inputval)
+      
       if(dataupload.data.status==true){
          const userData = {
           status: true,
           username: dataupload.data.username,
           // token: dataupload.data.token,
         };
+          setUser(userData)
          localStorage.setItem("token", JSON.stringify(userData));
         console.log(dataupload)
       navigate("/"); 
