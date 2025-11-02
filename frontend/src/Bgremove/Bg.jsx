@@ -8,90 +8,18 @@ function Bg() {
   const [user, setUser] = useState(null);
   const [coins, setCoins] = useState(0);
 
-  const navigate = useNavigate();
-
-  // ✅ Check if logged in
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (!savedUser) {
-      navigate("/login"); // redirect if not logged in
-    } else {
-      const parsedUser = JSON.parse(savedUser);
-      setUser(parsedUser);
-      setCoins(parsedUser.coins || 10); // default 10 coins on signup
-    }
-  }, [navigate]);
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (coins <= 0) {
-      alert("You don’t have enough coins!");
-      return;
-    }
-
-    // Reset old data
-    setPreview(URL.createObjectURL(file));
-    setResult(null);
-
-    // API call
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("size", "auto");
-    formData.append("image_file", file);
-
-    try {
-      const response = await fetch("https://api.remove.bg/v1.0/removebg", {
-        method: "POST",
-        headers: { "X-Api-Key": "YOUR_API_KEY_HERE" },
-        body: formData,
-      });
-
-      if (response.ok) {
-        const resultData = await response.arrayBuffer();
-        const blob = new Blob([resultData], { type: "image/png" });
-        const url = URL.createObjectURL(blob);
-        setResult(url);
-
-        // ✅ Deduct 1 coin
-        const newCoins = coins - 1;
-        setCoins(newCoins);
-
-        // update user in localStorage
-        const updatedUser = { ...user, coins: newCoins };
-        setUser(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-      } else {
-        console.error("Error:", response.status, response.statusText);
-      }
-    } catch (err) {
-      console.error("Fetch error:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDownload = () => {
-    if (!result) return;
-    const link = document.createElement("a");
-    link.href = result;
-    link.download = "no-bg.png";
-    link.click();
-  };
+  
 
   return (
     <div className="p-6 flex flex-col items-center gap-6">
-      {/* Show user coins */}
-      <p className="text-lg font-semibold mb-4">
-        Coins left: <span className="text-yellow-600">{coins}</span>
-      </p>
+      
+     
 
       {/* File Input */}
       <input
         type="file"
         accept="image/png, image/jpeg, image/jpg, image/webp"
-        onChange={handleFileChange}
+       
         className="border p-2 rounded cursor-pointer"
       />
 

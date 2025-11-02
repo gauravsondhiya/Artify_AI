@@ -15,7 +15,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/search" element={<Search />} /> */}
+        {/* <Route path="/bgremove" element={<Bg />} /> */}
         <Route
           path="/search"
           element={
@@ -28,7 +28,7 @@ const App = () => {
           path="/bgremove"
           element={
             <ProtectedRoute>
-              <Bg />
+           <Bg />
             </ProtectedRoute>
           }
         />
