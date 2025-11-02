@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
+import axios from "axios";
+import { NavLink } from "react-router";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+
+   const navigate = useNavigate();
   let [input, setinput] = useState({
     email: "",
     name: "",
@@ -16,11 +21,26 @@ const Signup = () => {
     }));
   };
 
-  let uploaddata = () => {
-  
+  let uploaddata = async() => {
+    try {
+       let postdata = await axios.post(import.meta.env.VITE_SIGNUP_API,input)
+        console.log(postdata.status)
+        if(postdata.data.status==true){
+      
+          navigate("/login"); 
+        }
+    } catch (error) {
+      console.log("kuch too error ha signup may")
+    }
+      
   };
 
   let submit = (e) => {
+    e.preventDefault()
+    setinput((pre)=>({...pre,input}))
+    uploaddata()
+    setinput(" ")
+     
     
   };
 
@@ -38,7 +58,7 @@ const Signup = () => {
           <input
             type="email"
             name="email"
-            value={input.email}
+            value={input.email||""}
             onChange={handler}
             required
             placeholder="Email ID"
@@ -47,16 +67,16 @@ const Signup = () => {
           <input
             type="text"
             name="name"
-            value={input.name}
+            value={input.name||""}
             onChange={handler}
             required
             placeholder="Full Name"
             className="border border-blue-200 "
           />
           <input
-            type="Password"
+            type="text"
             name="password"
-            value={input.password}
+            value={input.password||""}
             onChange={handler}
             required
             placeholder="Password"
@@ -64,6 +84,7 @@ const Signup = () => {
           />
           <input type="submit" className="bg-blue-600 text-white cursor-pointer" />
         </form>
+        <p className="mt-2">Already Have a account <NavLink to='/login' className='font-bold'> Login</NavLink></p>
       </div>
     </div>
   );

@@ -13,8 +13,6 @@ app.use(express.json())
 
 app.use('/api/auth',auth_router)
 
-
-
 app.get('/',(req,res)=>{
    res.send("hello artify ai")
 })

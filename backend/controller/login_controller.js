@@ -1,15 +1,44 @@
 import usertable from "../models/Signup_models.js";
-import bcrypt from 'bcrypt'
-const login_controller = async(req, res) => {
-  let { email, password } = req.body;
-  let datacheck = await usertable.find({email})
-  if(!datacheck) return res.status(404).json("wrong email")
-  console.log(password)
-  let pass_check = await bcrypt.compare(password,datacheck.password,(e,result)=>{
-     console.log(e +"   "+ result)
-  })
-  console.log(pass_check)
-  res.json("login success")
+import bcrypt from "bcrypt";
+// import jwt from "jsonwebtoken";
+import "dotenv/config";
+
+let login_controller = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await usertable.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        message: "User not found",
+      });
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+        console.log(isPasswordValid)
+    if (isPasswordValid) {
+     return res.status(200).json({
+      message: "Login successful",
+      status: true,
+      username: user.name,
+      // token,
+    });
+  
+    }
+
+    // Optional JWT generation
+    // const token = jwt.sign(
+    //   { email: user.email },
+    //   process.env.Secret_key,
+    //   { expiresIn: "3h" }
+    // );
+
+   
+ return res.status(401).json({
+        message: "Invalid password",
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 export default login_controller;

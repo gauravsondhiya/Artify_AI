@@ -13,27 +13,27 @@ const ImageGenerator = () => {
     setdimage(""); // reset previous image
     setchat("");
 
-    const ai = new GoogleGenAI({
-      apiKey: "AIzaSyC__7HIVs_l_DY0GpvalBBDOcF37cDJDfA",
-    });
+    // const ai = new GoogleGenAI({
+    //   apiKey: "AIzaSyC__7HIVs_l_DY0GpvalBBDOcF37cDJDfA",
+    // });
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-preview-image-generation",
-      contents: inputvalue,
-      config: {
-        responseModalities: [Modality.TEXT, Modality.IMAGE],
-      },
-    });
+    // const response = await ai.models.generateContent({
+    //   model: "gemini-2.0-flash-preview-image-generation",
+    //   contents: inputvalue,
+    //   config: {
+    //     responseModalities: [Modality.TEXT, Modality.IMAGE],
+    //   },
+    // });
 
-    for (const part of response.candidates[0].content.parts) {
-      if (part.text) {
-        setchat(part.text);
-      } else if (part.inlineData) {
-        setdimage(part.inlineData.data);
-      }
-    }
+    // for (const part of response.candidates[0].content.parts) {
+    //   if (part.text) {
+    //     setchat(part.text);
+    //   } else if (part.inlineData) {
+    //     setdimage(part.inlineData.data);
+    //   }
+    // }
 
-    setLoading(false);
+  //   setLoading(false);
   };
 
   let submit = () => {
@@ -42,15 +42,15 @@ const ImageGenerator = () => {
     }
   };
 
-  // ✅ Download function without fs
-  let download = () => {
-    const buffer = Buffer.from(dimage, "base64");
-    const blob = new Blob([buffer], { type: "image/png" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "artify_AI.png";
-    link.click();
-  };
+  // // ✅ Download function without fs
+  // let download = () => {
+  //   const buffer = Buffer.from(dimage, "base64");
+  //   const blob = new Blob([buffer], { type: "image/png" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "artify_AI.png";
+  //   link.click();
+  // };
 
   return (
     <div className="p-5">
@@ -61,8 +61,8 @@ const ImageGenerator = () => {
           value={inputvalue}
           onChange={(e) => {
             setinput(e.target.value);
-            e.target.style.height = "auto"; // reset height
-            e.target.style.height = e.target.scrollHeight + "px"; // grow dynamically
+            // e.target.style.height = "auto"; // reset height
+            // e.target.style.height = e.target.scrollHeight + "px"; // grow dynamically
           }}
           placeholder="Type your imagination..."
           className="flex-grow resize-none border border-gray-300 rounded-2xl p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"

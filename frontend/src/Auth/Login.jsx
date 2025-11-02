@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
-
+import axios from 'axios'
+import { data } from "react-router";
+import { useNavigate } from "react-router";
 const Login = () => {
+   const navigate = useNavigate();
   let [inputval, setinputval] = useState({
     email: "",
     password: "",
@@ -15,14 +18,32 @@ const Login = () => {
     }));
   };
 
-  let uploaddata = () => {
-   
+  let uploaddata = async() => {
+    try {
+      let dataupload = await axios.post(import.meta.env.VITE_LOGIN_API,inputval)
+      if(dataupload.data.status==true){
+         const userData = {
+          status: true,
+          username: dataupload.data.username,
+          // token: dataupload.data.token,
+        };
+         localStorage.setItem("token", JSON.stringify(userData));
+        console.log(dataupload)
+      navigate("/"); 
+      }
+      console.log(dataupload)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   let submited = (event) => {
     event.preventDefault();
+    setinputval((pre)=>({...pre,inputval}))
     uploaddata();
+    setinputval(" ")
   };
+  let isdisable= !inputval.email||!inputval.password
 
   return (
     <div>
@@ -40,7 +61,7 @@ const Login = () => {
             required
             name="email"
             className="border border-blue-200 "
-            value={inputval.email}
+            value={inputval.email||""}
             onChange={handler}
           />
           <input
@@ -49,10 +70,15 @@ const Login = () => {
             placeholder="Password"
             name="password"
             className="border border-blue-200"
-            value={inputval.password}
+            value={inputval.password||""}
             onChange={handler}
           />
-          <input type="submit" className="bg-blue-600 text-white cursor-pointer" />
+          <input type="submit" disabled={isdisable} 
+          className={` cursor-pointer ${
+              isdisable
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 text-white"
+            }`}/>
         </form>
       </div>
     </div>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-// import Carsoles from "../Carosoles/Carsoles";
+import Carsoles from "../Home/Carsoles";
 import ImageGenerator from "./ImageGenerator";
 import { stepsData } from "../assets/assets.js";
 const Search = () => {
   return (
     <div>
-      {/* <Carsoles /> */}
-      
+      <Carsoles />
 
       <div className=" text-center">
         <p className="text-3xl font-bold mt-9">How it works</p>

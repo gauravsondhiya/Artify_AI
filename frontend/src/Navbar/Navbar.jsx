@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { assets } from "../assets/assets";
 import { NavLink } from "react-router";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { GiCrossedSwords } from "react-icons/gi";
+import UserContext from "../Context/UserContext.js";
 
 const Navbar = () => {
   const [hiden, sethiden] = useState(false);
-  const [user, setUser] = useState(null); // ✅ user state
-  const [coins, setCoins] = useState(50); // example coins
-
+  const { user, setUser } = useContext(UserContext);
   const hider = () => sethiden(!hiden);
-
+  console.log(user)
   const handleLogin = () => {};
 
   const handleLogout = () => {
+    setUser({ status: false, username: "" });
+  localStorage.removeItem("token");
     console.log("logout");
   };
 
   return (
     <div>
       {/* ✅ Desktop Navbar */}
-      <div className="sm:flex justify-around hidden sm:block p-3 border border-blue-300 mt-4 w-[90%] m-auto rounded-2xl">
+      <div className="hidden sm:block  sm:flex justify-around  items-center p-3 border border-blue-300 mt-4 w-[90%] m-auto rounded-2xl">
         <NavLink to="/">
           <div className="flex gap-1 text-2xl font-bold">
             <img src={assets.logo_icon} alt="logo" />
@@ -28,7 +29,14 @@ const Navbar = () => {
           </div>
         </NavLink>
 
-        <div className="flex gap-5 font-semibold items-center">
+       { user.status ?(
+         <div className="flex items-center gap-5 text-xl font-bold">
+           <div>{user.username}</div>
+          <button className="border p-3 bg-blue-400 text-white  rounded-2xl hover:bg-gray-300" onClick={handleLogout}>Logout</button>
+        </div>
+       ):(
+
+         <div className=" flex  gap-6  font-semibold items-center">
           {/* Always show Pricing */}
           <NavLink
             to="/Price"
@@ -51,6 +59,10 @@ const Navbar = () => {
             Signup
           </NavLink>
         </div>
+       ) 
+       
+       }
+
       </div>
 
       {/* ✅ Mobile Navbar */}
@@ -69,11 +81,10 @@ const Navbar = () => {
 
       {hiden && (
         <div className="backdrop-blur-xl text-2xl font-bold text-center grid">
-          <NavLink to="/price" className="mt-3 hover:underline">
-            Pricing
-          </NavLink>
+              <NavLink to="/price" className="mt-3 hover:underline">
+               Pricing
+              </NavLink>
 
-         
               <NavLink
                 to="/Login"
                 onClick={handleLogin}
